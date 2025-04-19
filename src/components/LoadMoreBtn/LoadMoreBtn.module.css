@@ -1,0 +1,13 @@
+.moreBtn {
+  margin-top: 20px;
+  background-color: rgb(11, 11, 136);
+  color: white;
+  outline: none;
+  border: none;
+  width: 120px;
+  height: 35px;
+}
+
+.moreBtn:hover {
+  background-color: rgb(0, 0, 7);
+}
