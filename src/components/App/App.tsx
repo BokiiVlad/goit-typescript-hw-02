@@ -7,20 +7,21 @@ import PacmanLoader from "react-spinners/PacmanLoader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
+import { Images } from "../../types";
 
 function App() {
-  const [images, setImages] = useState([]);
-  const [error, setError] = useState(false);
-  const [loader, setLoader] = useState(false);
+  const [images, setImages] = useState<Images[]>([]);
+  const [error, setError] = useState<boolean>(false);
+  const [loader, setLoader] = useState<boolean>(false);
 
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
+  const [query, setQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
 
   // Стани модального вікна
-  const [modalIsOpen, setModal] = useState(false);
-  const [imageModal, setImageModal] = useState("");
+  const [modalIsOpen, setModal] = useState<boolean>(false);
+  const [imageModal, setImageModal] = useState<string>("");
 
-  const handleFilter = (queryValue) => {
+  const handleFilter = (queryValue: string) => {
     setQuery(queryValue);
     setImages([]);
     setPage(1);
@@ -28,7 +29,7 @@ function App() {
 
   // Запит при зміні значеення і сторінки
   useEffect(() => {
-    const updateData = async () => {
+    const updateData = async (): Promise<void> => {
       if (!query) {
         return;
       }
@@ -36,7 +37,7 @@ function App() {
       try {
         setLoader(true);
         setError(false);
-        const dataImg = await queryServer(query, page);
+        const dataImg: Images[] = await queryServer(query, page);
         setImages((prevData) => [...prevData, ...dataImg]);
       } catch (error) {
         setError(true);
@@ -49,18 +50,18 @@ function App() {
   }, [query, page]);
 
   // Перемикання сторінки
-  const pageUp = () => {
+  const pageUp = (): void => {
     setPage(page + 1);
   };
 
   // Відкривання модалки
-  const isOpenModal = (urlImage) => {
+  const isOpenModal = (urlImage: string): void => {
     setImageModal(urlImage);
     setModal(true);
   };
 
   // Закриття модалки
-  const isCloseModal = () => {
+  const isCloseModal = (): void => {
     setImageModal("");
     setModal(false);
   };

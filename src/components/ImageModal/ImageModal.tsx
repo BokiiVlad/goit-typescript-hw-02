@@ -1,7 +1,13 @@
 import Modal from "react-modal";
 import css from "./ImageModal.module.css";
 
-export default function ImageModal({ onClose, onModalValue, value }) {
+type Props = {
+  onClose: () => void;
+  onModalValue: boolean;
+  value: string;
+};
+
+export default function ImageModal({ onClose, onModalValue, value }: Props) {
   return (
     <div>
       <Modal

@@ -1,6 +1,12 @@
+import { Images, OpenModal } from "../../types";
 import css from "./ImageCard.module.css";
 
-export default function ImageCard({ image, onOpenModal }) {
+type Props = {
+  image: Images;
+  onOpenModal: OpenModal;
+};
+
+export default function ImageCard({ image, onOpenModal }: Props) {
   const handleClick = () => {
     onOpenModal(image.urls.regular);
   };

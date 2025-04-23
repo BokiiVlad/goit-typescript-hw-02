@@ -1,6 +1,10 @@
 import css from "./LoadMoreBtn.module.css";
 
-export default function LoadMoreBtn({ pageUp }) {
+type Props = {
+  pageUp: () => void;
+};
+
+export default function LoadMoreBtn({ pageUp }: Props) {
   return (
     <button className={css.moreBtn} onClick={pageUp} type="button">
       Load more
